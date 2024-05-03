@@ -1,7 +1,18 @@
+import datetime
+import shutil
 import os
 import time
 import wave
-import shutil
+
+def save_wavs(human_fp, robot_fp):
+    current_datetime = datetime.datetime.now()
+    formatted_datetime = current_datetime.strftime("%Y-%m-%d_%H-%M-%S")
+
+    new_human_filename = f"saved_interactions/{formatted_datetime}_human.wav"
+    new_robot_filename = f"saved_interactions/{formatted_datetime}_robot.wav"
+
+    shutil.copyfile(human_fp, new_human_filename)
+    shutil.copyfile(robot_fp, new_robot_filename)
 
 def is_file_complete(file_path):
     """ Check if the file size has stabilized. """
