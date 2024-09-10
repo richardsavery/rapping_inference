@@ -36,12 +36,9 @@ def generate_clean(from_human):
     return robot_response
     
 
-# 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
-
 folder_path = 'audio'
 audio_length = 0
 time_asleep = 0 
-
 
 
 while True:
@@ -55,10 +52,6 @@ while True:
 
     prompt = random.choice(['listen', 'random'])
 
-    file_path = os.path.join(folder_path, filename)
-
-    target_fp = 'voice.wav'
-    shutil.move(file_path, target_fp)
     input_text = transcribe_audio()
     print('Human: ', input_text)    
 
@@ -86,6 +79,11 @@ while True:
         
     subprocess.run(command)
 
+    command = ['rm', 'voice.wav']
+    subprocess.run()
+
+    command = ['rm', 'tiny.txt']
+    subprocess.run()
 
     time.sleep(int(audio_length))
     print("Waiting " + str(int(audio_length)))
