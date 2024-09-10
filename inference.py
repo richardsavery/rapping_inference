@@ -36,6 +36,7 @@ def generate_clean(from_human):
     return robot_response
     
 
+# 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
 
 folder_path = 'audio'
 audio_length = 0
