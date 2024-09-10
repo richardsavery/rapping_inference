@@ -43,36 +43,9 @@ time_asleep = 0
 
 while True:
     checked_files = set()
-
+    
 
     for filename in os.listdir(folder_path):
-        if time_asleep > 45:
-                from_human = "You are a rapping robot named Keirzo who talks in rhyme. Keep your responses short. You want to ask in a friendly way for people to talk to you"
-
-                
-                robot_response = generate_clean(from_human)
-                spec, audio = infer(spec_model, vocoder, 
-                                    robot_response, 
-                                    speaker=None)
-                write('gen/para.wav', 22050, audio[0])
-
-                audio_length = len(audio[0])/22050
-                # SEND
-                command = [
-                    "scp",
-                    "-i", "/home/richard/.ssh/id_rsa",
-                    "-o", "StrictHostKeyChecking=no",
-                    "gen/para.wav",
-                    "keirzomac@192.168.50.189:~/Desktop/zokeir/recordings/para.wav"]
-                    
-                subprocess.run(command)
-
-
-                time.sleep(int(audio_length))
-                print("Waiting " + str(int(audio_length)))
-                time_asleep = 0 
-
-
         if filename.endswith('.wav') and filename not in checked_files:
             file_path = os.path.join(folder_path, filename)
             print(f"Checking file: {file_path}")
@@ -85,7 +58,7 @@ while True:
                 print('Human: ', input_text)    
 
                 # PARAPHRASE, WRITE AUDIO
-                from_human = "You are a rapping robot named Keirzo who talks in rhyme. Keep your answers short. Someone just asked you:" + input_text
+                from_human = "You are a rapping robot named Keirzo who talks in rhyme, your favorite colors are purple and orange. Keep your answers short. Someone just asked you:" + input_text
 
                 
                 robot_response = generate_clean(from_human)
